@@ -1,0 +1,22 @@
+ref link:https://phoenixnap.com/kb/mysql-docker-container
+docker pull mysql
+local data directory : ~/docker-mysql/data
+
+mkdir -p /opt/docker-mysql/data
+mkdir -p  /opt/docker/conf/MOP_MYSQL/conf.d
+
+
+start command:
+docker run \
+--detach \
+--name=MOP_MYSQL \
+--env="MYSQL_ROOT_PASSWORD=******************************giveagoodone*******************" \
+--publish 3306:3306 \
+--volume=/opt/docker/conf/MOP_MYSQL/conf.d:/etc/mysql/conf.d \
+--volume=/opt/docker-mysql/data:/var/lib/mysql \
+mysql
+
+docker exec -it MOP_MYSQL bash
+mysql -uroot -p
+CREATE DATABASE mop_password;
+use mop_password;
